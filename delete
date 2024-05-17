@@ -1,0 +1,21 @@
+<?php
+//include db connection
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $query = "DELETE FROM table_name WHERE id = ?";
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        echo "User deleted successfully.";
+    } else {
+        echo "Error deleting user.";
+    }
+
+    $stmt->close();
+}
+
+$con->close();
+?>
